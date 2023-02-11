@@ -1,0 +1,75 @@
+package com.example.Student_Library_Management_System.Models;
+
+import com.example.Student_Library_Management_System.Enums.CardStatus;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
+
+@Entity
+@Table(name = "card_table")
+public class Card {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @CreationTimestamp    // set or stamp real time when an entry is created
+    Date createdOn;
+
+    @UpdateTimestamp     // set or update real time when an entry update
+    Date updatedOn;
+
+    @Enumerated(value = EnumType.STRING) // Enumerated datatype use as a String
+    private CardStatus cardStatus;
+
+    public Card(){
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public CardStatus getCardStatus() {
+        return cardStatus;
+    }
+
+    public void setCardStatus(CardStatus cardStatus) {
+        this.cardStatus = cardStatus;
+    }
+
+
+    @OneToOne      // These 3 lines are use for the estabilis unidirectional relation for parent class(Student)  &  child class(Card)
+    @JoinColumn
+    private Student studentVariableName;
+
+    public Student getStudentVariableName() {
+        return studentVariableName;
+    }
+
+    public void setStudentVariableName(Student studentVariableName) {
+        this.studentVariableName = studentVariableName;
+    }
+}
