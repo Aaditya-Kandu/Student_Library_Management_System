@@ -5,5 +5,5 @@ public enum CardStatus {
     ACTIVATED,
     DEACTIVATED,
     BLOCKED,
-    EXPIRED
+    EXPIRED,
 }

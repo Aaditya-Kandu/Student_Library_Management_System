@@ -4,12 +4,10 @@ import com.example.Student_Library_Management_System.Models.Student;
 import com.example.Student_Library_Management_System.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
-@RequestMapping
+@RequestMapping("student")
 public class StudentController  {
 
     @Autowired
@@ -19,6 +17,20 @@ public class StudentController  {
     public String createStudent(@RequestBody() Student student)
     {
         return studentService.createStudent(student);
+    }
+
+    @GetMapping("/get_student")
+    public String getStudentByemail(@RequestParam("email") String email){
+
+        return studentService.findNameByemail(email);
+
+
+    }
+
+    @PutMapping("/update_mobileNo")
+    public String updateMobileNo(@RequestBody() Student student){
+
+        return studentService.updateMobNo(student);
     }
 }
 

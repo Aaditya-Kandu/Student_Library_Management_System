@@ -24,7 +24,7 @@ public class StudentService {
 
         // lets go to the student entity
 
-        student.setCard(card);
+     student.setCard(card);
 
         // if we use bidirectional mapping then we need to save the both entity child as well as parent class entity
         // But we use bidirectional mapping we need to save only parent entity and child entity will automatic saved
@@ -33,5 +33,27 @@ public class StudentService {
 
 
         return "Student & Card added";
+    }
+
+    public String findNameByemail(String email){
+
+        Student student = studentRepository.findByEmail(email);
+
+        return student.getName();
+    }
+
+    public  String updateMobNo(Student newStudent){
+
+        // First we need to fetch the original data
+        Student originalStudent = studentRepository.findById(newStudent.getId()).get();
+
+        // we need to change those entity those we need & all entity as it is;;
+        originalStudent.setMobileNo(newStudent.getMobileNo());
+
+
+        studentRepository.save(originalStudent);
+
+        return "Update student successfully";
+
     }
 }

@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "card_table")
@@ -64,6 +66,19 @@ public class Card {
     @OneToOne      // These 3 lines are use for the estabilis unidirectional relation for parent class(Student)  &  child class(Card)
     @JoinColumn
     private Student studentVariableName;
+
+
+    // Card is parent wrt book;
+    @OneToMany(mappedBy = "card" ,cascade = CascadeType.ALL)
+   private List<Book> booksIssued = new ArrayList<>();
+
+    public List<Book> getBooksIssued() {
+        return booksIssued;
+    }
+
+    public void setBooksIssued(List<Book> booksIssued) {
+        this.booksIssued = booksIssued;
+    }
 
     public Student getStudentVariableName() {
         return studentVariableName;
