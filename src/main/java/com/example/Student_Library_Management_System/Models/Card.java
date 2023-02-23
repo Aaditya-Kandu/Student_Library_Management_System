@@ -87,4 +87,26 @@ public class Card {
     public void setStudentVariableName(Student studentVariableName) {
         this.studentVariableName = studentVariableName;
     }
+
+
+    //>>>>>>>>>Now mapping also happen here of transaction entity so that work as bidirectional<<<<<//
+    // It is parent class so that use cascade;
+
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    private List<Transactions>  transactionsList = new ArrayList<>();
+
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+    //    public List<Transactions> getCards() {
+//        return cards;
+//    }
+//
+//    public void setCards(List<Transactions> cards) {
+//        this.cards = cards;
+//    }
 }

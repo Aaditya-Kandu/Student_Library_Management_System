@@ -18,6 +18,8 @@ public class Author {
 
     private String country;
 
+    private double rating;
+
     // This part is used in mapping that is written in parent class
     // that is full-fill Bidirectional mapping
 
@@ -30,6 +32,14 @@ public class Author {
 
     public int getId() {
         return id;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public void setId(int id) {

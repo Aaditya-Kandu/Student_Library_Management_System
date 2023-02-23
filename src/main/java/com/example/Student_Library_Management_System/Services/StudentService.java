@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Services;
 
+import com.example.Student_Library_Management_System.DTOs.StudentUpdateMobNoRequestDTO;
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import com.example.Student_Library_Management_System.Models.Card;
 import com.example.Student_Library_Management_System.Models.Student;
@@ -42,13 +43,13 @@ public class StudentService {
         return student.getName();
     }
 
-    public  String updateMobNo(Student newStudent){
+    public  String updateMobNo(StudentUpdateMobNoRequestDTO studentReq){
 
         // First we need to fetch the original data
-        Student originalStudent = studentRepository.findById(newStudent.getId()).get();
+        Student originalStudent = studentRepository.findById(studentReq.getId()).get();
 
         // we need to change those entity those we need & all entity as it is;;
-        originalStudent.setMobileNo(newStudent.getMobileNo());
+        originalStudent.setMobileNo(studentReq.getMobileNo());
 
 
         studentRepository.save(originalStudent);

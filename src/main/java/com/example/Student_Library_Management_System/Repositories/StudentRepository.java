@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student , Integer> {
 
+        // Make custom Query
         Student findByEmail(String email);
 
         List<Student> findByCountry(String country);

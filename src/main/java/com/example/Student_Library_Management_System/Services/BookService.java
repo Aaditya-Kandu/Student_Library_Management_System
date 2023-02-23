@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Services;
 
+import com.example.Student_Library_Management_System.DTOs.BookRequestDTO;
 import com.example.Student_Library_Management_System.Models.Author;
 import com.example.Student_Library_Management_System.Models.Book;
 import com.example.Student_Library_Management_System.Repositories.AuthorRepository;
@@ -15,14 +16,16 @@ public class BookService {
     @Autowired
     AuthorRepository authorRepository;
 
-    public String addBook(Book book){
+    public String addBook(BookRequestDTO bookRequestDTO){
 
 //        bookRepository.save(book);
 //
 //        return "Add book successfully";
 
         //I want to get Author entity
-        int authorId = book.getAuthor().getId();
+        ////int authorId = book.getAuthor().getId();
+
+        int authorId = bookRequestDTO.getAuthorId();
 
     // Now i am fetching the Author entity
 
@@ -30,6 +33,19 @@ public class BookService {
 
         // set the foreign key att in tha child
 
+        // we create entity from DTO so that it save in DB
+
+        Book book = new Book();
+
+        // basic attribute we need to set DTO
+
+        book.setGenre(bookRequestDTO.getGenre());
+        book.setIssued(false);
+        book.setName(bookRequestDTO.getName());
+        book.setPages(bookRequestDTO.getPages());
+        book.setBookRating(bookRequestDTO.getBookRating());
+
+        //set the foreign key
         book.setAuthor(author);
 
         // we need to update list of book written in parent class

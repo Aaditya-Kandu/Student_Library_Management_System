@@ -3,6 +3,9 @@ package com.example.Student_Library_Management_System.Models;
 import com.example.Student_Library_Management_System.Enums.Genre;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -103,5 +106,23 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    //>>>>>> Now we do mapping in parent class so that it make bidirectional.<<<<<<<//
+
+    // for This mapping use cassCade
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList = new ArrayList<>();
+
+    // make getter and setter also
+
+
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
     }
 }
